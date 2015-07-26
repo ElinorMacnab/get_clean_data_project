@@ -1,5 +1,5 @@
 # extract zip file if not done manually
-unzip("getdata-projectfiles-UCI HAR dataset")
+unzip("getdata-projectfiles-UCI HAR dataset.zip")
 
 # read in test and training datasets separately
 training <- read.table("./UCI HAR Dataset/train/X_train.txt") # slow
@@ -35,11 +35,13 @@ boundData <- rbind(trainingSubj, testSubj)
 # sort by ID and activity
 sortedData <- boundData[order(boundData$Subject.ID, boundData$Activity),]
 
-# create integer and logical vectors of columns to keep
+# create integer and logical vectors of columns and names to keep
 keepIntMeans <- grep("mean()", colNamesVector, fixed=T)
 keepIntStds <- grep("std()", colNamesVector, fixed=T)
-keepInt <- c(1, 2, keepIntMeans+2, keepIntStds+2)
-keepLogic <- 1:length(colNamesVector) %in% keepInt
+keepColsInt <- c(1, 2, keepIntMeans+2, keepIntStds+2)
+keepNamesInt <- c(keepIntMeans, keepIntStds)
+keepColsLogic <- 1:ncol(sortedData) %in% keepColsInt
+keepNamesLogic <- 1:length(colNamesVector) %in% keepNamesInt
 
 # create new array containing only desired columns and a vector containing their
 # names
@@ -48,11 +50,11 @@ trimmedColNames <- vector(mode = "character", length = length(keepInt)-2)
 countCol <- 1
 countName <- 1
 for(i in 1:length(keepLogic)){
-  if(keepLogic[i]){
+  if(keepColsLogic[i]){
     trimmedDataArr[,countCol] <- sortedData[,i]
     countCol <- countCol+1
   }
-  if(keepLogic[i+2]){
+  if(keepNamesLogic[i]){
     trimmedColNames[countName] <- colNamesVector[i]
     countName <- countName+1
   }

@@ -25,7 +25,9 @@ For simplicity and brevity, the original names for the selected features were re
 set. The prefix to each one denotes whether it is a non-Fourier transformed ("t" for time domain) or
 Fourier transformed ("f" for frequency domain). The gravitational components to the linear acceleration
 data are marked as "Gravity"; all other features are concerned with the subjects' motion and are marked
-as "Body". Accelerometer and gyroscope data are distinguished by "Acc" and "Gyro" respectively. The
-derived features, jerk signals and magnitudes, are labelled "Jerk" and "Mag". The statistical measure
-being reported is then added - "mean()" or "std()" (for standard deviation) as appropriate. Finally,
-where appropriate the axis (X, Y or Z) along which the measurement was taken is recorded.
+as "Body". (For unknown reasons, an extra "Body" is inserted in the names of features 516-544 - this is
+not flagged up or explained in the original explanation of the variable names and may be a typo).
+Accelerometer and gyroscope data are distinguished by "Acc" and "Gyro" respectively. The derived features,
+jerk signals and magnitudes, are labelled "Jerk" and "Mag". The statistical measure being reported is then
+added - "mean()" or "std()" (for standard deviation) as appropriate. Finally, where appropriate the axis
+(X, Y or Z) along which the measurement was taken is recorded.
